@@ -1,5 +1,16 @@
 # Changelog
 
+## v0.2.5
+- Added support for `manylinux2014` spec
+- If a dependencies dependencies are specified multiple times, merge `extras`
+by ommission. This led to bugs where dependencies didn't get installed when
+specified both as an extras and as not
+- Dependencies specifying `sys_platform == "win32"` now applies to 64-bit
+Windows installations as well. This should fix cases where Windows dependencies
+weren't being installed.
+- Fixed a dependency-installation bug triggered by symlinks inside Pypi source archives
+- `pyflow new` no longer creates a `LICENSE` file
+
 ## v0.2.4
 - Fixed a bug where `pyflow script` was broken
 - Fixed a bug where `pyflow init` was broken

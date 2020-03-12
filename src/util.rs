@@ -60,9 +60,12 @@ impl FromStr for Os {
     fn from_str(s: &str) -> Result<Self, Self::Err> {
         Ok(match s {
             "manylinux1_i686" | "manylinux2010_i686" => Self::Linux32,
-            "cygwin" | "linux" | "linux2" | "manylinux1_x86_64" | "manylinux2010_x86_64" | "manylinux2014_x86_64" => {
-                Self::Linux
-            }
+            "cygwin"
+            | "linux"
+            | "linux2"
+            | "manylinux1_x86_64"
+            | "manylinux2010_x86_64"
+            | "manylinux2014_x86_64" => Self::Linux,
             "win32" => Self::Windows32,
             "windows" | "win" | "win_amd64" => Self::Windows,
             "macosx_10_6_intel" | "darwin" => Self::Mac,
@@ -91,16 +94,6 @@ pub fn print_color(message: &str, color: Color) {
         Colored::Fg(Color::Reset)
     );
 }
-
-///// Print in a color, then reset formatting.
-//pub fn print_color_bold(message: &str, color: Color) {
-//    println!(
-//        "{}{}{}",
-//        Colored::Fg(color),
-//        message,
-//        Colored::Fg(Color::Reset)
-//    );
-//}
 
 /// Used when the program should exit from a condition that may arise normally from program use,
 /// like incorrect info in config files, problems with dependencies, or internet connection problems.
@@ -478,7 +471,7 @@ pub fn unpack_tar_xz(archive_path: &Path, dest: &Path) {
 }
 
 /// Find venv info, creating a venv as required.
-pub fn find_venv_info(
+pub fn find_or_create_venv(
     cfg_vers: &Version,
     pypackages_dir: &Path,
     pyflow_dir: &Path,

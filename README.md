@@ -6,9 +6,15 @@
 
 #### *Simple is better than complex* - The Zen of Python
 
-Pyflow manages Python installations and dependencies.
+Pyflow streamlines working with Python projects and files. It's an 
+easy-to-use CLI app with a minimalist API. Never worry about having the right
+version of Python or dependencies.
 
+Example use, including setting up a project and switching Py versions:
 ![Demonstration](https://raw.githubusercontent.com/david-oconnor/pyflow/master/demo.gif)
+
+If your project's already configured, the only command you need is `pyflow`,
+or `pyflow myscript.py`; setting up Python and its dependencies are automatic.
 
 **Goals**: Make using and publishing Python projects as simple as possible. Actively
 managing Python environments shouldn't be required to use dependencies safely. We're attempting
@@ -21,32 +27,32 @@ It runs standalone scripts in their
 own environments with no config, and project functions directly from the CLI.
 
 It implements [PEP 582 -- Python local packages directory](https://www.python.org/dev/peps/pep-0582/)
-and [Pep 518 (pyproject.toml)](https://www.python.org/dev/peps/pep-0518/), and supports Python ≥ 3.4.
+and [Pep 518 (pyproject.toml)](https://www.python.org/dev/peps/pep-0518/).
 
 
 ## Installation
 - **Windows** - Download and run
-[this installer](https://github.com/David-OConnor/pyflow/releases/download/0.2.4/pyflow-0.2.4-x86_64.msi).
+[this installer](https://github.com/David-OConnor/pyflow/releases/download/0.2.5/pyflow-0.2.5-x86_64.msi).
 Or, if you have [Scoop](https://scoop.sh) installed, run `scoop install pyflow`.
 
 - **Ubuntu, or another Os that uses Snap** - Run `snap install pyflow --classic`.
 
 - **Ubuntu or Debian without Snap** - Download and run
-[this deb](https://github.com/David-OConnor/pyflow/releases/download/0.2.4/pyflow_0.2.4_amd64.deb).
+[this deb](https://github.com/David-OConnor/pyflow/releases/download/0.2.5/pyflow_0.2.5_amd64.deb).
 
 - **Fedora, CentOs, RedHat, or older versions of SUSE** - Download and run
-[this rpm](https://github.com/David-OConnor/pyflow/releases/download/0.2.4/pyflow-0.2.4.x86_64.rpm).
+[this rpm](https://github.com/David-OConnor/pyflow/releases/download/0.2.5/pyflow-0.2.5.x86_64.rpm).
 
 - **A different Linux distro** - Download this
-[standalone binary](https://github.com/David-OConnor/pyflow/releases/download/0.2.4/pyflow)
+[standalone binary](https://github.com/David-OConnor/pyflow/releases/download/0.2.5/pyflow)
  and place it somewhere accessible by the PATH. For example, `/usr/bin`.
 
-- **Mac** - Install Rust: `curl https://sh.rustup.rs -sSf | sh`, then run
-`cargo install pyflow`. If able, please build from source using the instructions near the bottom of
-this page and PR a binary, to make this easier in the future.
+- **Mac** - Download this [zipped Mac binary](https://github.com/David-OConnor/pyflow/releases/download/0.2.5/pyflow_mac_0.2.5.zip)
+ , ance place the file in it somewhere accessible by the PATH. (Props to @russeldavis for building this)
 
 - **With Pip** - Run `pip install pyflow`. The linux install using this method is much larger than
-with the above ones, and it doesn't yet work with Mac.
+with the above ones, and it doesn't yet work with Mac. This method will likely not work
+with Red Hat, CentOs, or Fedora.
 
  - **If you have [Rust](https://www.rust-lang.org) installed** - Run `cargo install pyflow`.
 
@@ -60,7 +66,7 @@ creates a folder with the basics.
 
 
 ## Quick-and-dirty start for quick-and-dirty scripts
-- Add the line `__requires__ = [numpy, requests]` somewhere in your script, where `numpy` and
+- Add the line `__requires__ = ['numpy', 'requests']` somewhere in your script, where `numpy` and
 `requests` are dependencies.
 Run `pyflow script myscript.py`, where `myscript.py` is the name of your script.
 This will set up an isolated environment for this script, and install
@@ -164,7 +170,7 @@ These tools have different scopes and purposes:
 | **Manages Python installations** | | | | ✓ | | ✓ | ✓ |
 | **Py-environment-agnostic** | | | | ✓ | | ✓ | ✓ |
 | **Included with Python** | ✓ | | | | | | |
-| **Stores deps with project** | | | | | ✓ | | ✓|
+| **Stores deps with project** | | |✓| | ✓ | | ✓|
 | **Requires changing session state** | ✓ | | | ✓ | | | |
 | **Clean build/publish flow** | | | ✓ | | | | ✓ |
 | **Supports old Python versions** | with `virtualenv` | ✓ | ✓ | ✓ | ✓ | ✓ | |
@@ -184,7 +190,7 @@ Example contents:
 [tool.pyflow]
 py_version = "3.7"
 name = "runcible"
-version = "0.2.4"
+version = "0.2.5"
 authors = ["John Hackworth <jhackworth@vic.org>"]
 
 
@@ -367,7 +373,7 @@ In order to build and publish your project, additional info is needed in
 [tool.pyflow]
 name = "everythingkiller"
 py_version = "3.6"
-version = "0.2.4"
+version = "0.2.5"
 authors = ["Fraa Erasmas <raz@edhar.math>"]
 description = "Small, but packs a punch!"
 homepage = "https://everything.math"
@@ -390,7 +396,7 @@ activate = "jeejah:activate"
 
 [tool.pyflow.dependencies]
 numpy = "^1.16.4"
-manimlib = "0.2.4"
+manimlib = "0.2.5"
 ipython = {version = "^7.7.0", extras=["qtconsole"]}
 
 
